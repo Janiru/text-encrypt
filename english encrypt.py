@@ -6,7 +6,7 @@ def createArray(rows,cols):
     for i in range(rows):
         row = []
         for j in range(cols):
-            row.append(0)
+            row.append('')
         wordArray.append(row)
     return wordArray
 
@@ -17,17 +17,17 @@ length = len(inputStr)
 lengthSqr = length ** 0.5
 rows = math.floor(lengthSqr)
 cols = math.ceil(lengthSqr)
+if rows * cols < length:
+    rows += 1
 wordList = createArray(rows,cols)
 count = 0
-print(f"rows {rows} cols {cols}")
-for x in range(rows):
+for x in range(rows):   
     for j in range(cols):
-        wordList[x][j] = inputStr[count]
+        wordList[x][j] = inputStr[count] 
+        if count == len(inputStr)-1:
+            break
         count += 1
-for i in wordList:
-    for x in i:
-        print(x, end=" ")
-    print()
-
-
-
+for horizontal in range(cols):
+    for verticle in range(rows):
+        print(wordList[verticle][horizontal],end="")
+    print(end=" ")
